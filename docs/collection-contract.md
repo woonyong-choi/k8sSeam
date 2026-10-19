@@ -93,9 +93,9 @@ flowchart TD
 
 ### 무엇을 시험했나
 
-→ 계약 자체는 [`domains/inventory/coverage.py`](../src/domains/inventory/coverage.py) 에 있다. `k8s-ops-min` 의 `tests/test_inventory_coverage.py` 는 이 저장소에 없는 `domains.inventory.kubernetes_snapshot` 에 기대고 있어 함께 옮기지 않았다 — 이 계층의 회귀 테스트는 아직 비어 있다.
+계약 자체는 [`domains/inventory/coverage.py`](../src/domains/inventory/coverage.py)에 있다. 이전 `k8s-ops-min`의 `tests/test_inventory_coverage.py`는 이 저장소에 없는 `domains.inventory.kubernetes_snapshot`에 의존하므로 함께 옮기지 않았다. 이 계층의 회귀 테스트는 아직 비어 있다.
 
-기능이 되는지가 아니라 **어떤 사고를 막았는지**로 시험을 짰습니다.
+아래 표는 어떤 사고를 막을지에 따라 정한 이전 `k8s-ops-min`의 시험 기준이다. 현재 저장소의 시험 실적은 아니다.
 
 | 막으려는 사고 | 시험 내용 |
 |---|---|
