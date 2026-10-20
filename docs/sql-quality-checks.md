@@ -1,4 +1,4 @@
-[← Kyro로 돌아가기](../README.md) · [← 05](airflow-pipeline.md)
+[← Kyro로 돌아가기](../README.md) · ← 05 (`airflow-pipeline.md`)
 
 # SQL 정합성 질의
 
@@ -574,7 +574,7 @@ ORDER BY u.origin, u.ancestor, u.depth, c.finished_at DESC NULLS LAST, u.run_id 
 
 ## 측정
 
-관측 데이터를 쌓아 두고 인덱스 유무로 나눠 쟀습니다. **합성 데이터입니다** — 분포와 카디널리티가 실제와 다르므로 [측정과 한계](load-and-design-limits.md)의 고지를 함께 읽어야 합니다. `make catalog-bench` 로 재현합니다.
+관측 데이터를 쌓아 두고 인덱스 유무로 나눠 측정한 기존 기록이다. 합성 데이터이므로 분포와 카디널리티가 실제와 다르다. 상세 조건의 참조인 측정과 한계(`load-and-design-limits.md`)와 앞서 참조한 Airflow 문서의 공개 원문은 이 저장소에서 확인할 수 없다. 아래 수치와 2단계 질의의 한계는 기존 기록을 보존한 것이며 이번에 재측정하거나 출처 원문과 대조하지 않았다. 재현 명령은 `make catalog-bench`다.
 
 적재 규모는 `observed_fields` 603,618행 · `observed_rows` 120,762행 · `normalized_evidence` 60,762행입니다. 각 질의를 7회 실행한 중앙값입니다.
 
@@ -640,7 +640,7 @@ make catalog-sql
 
 ## 남은 것
 
-- 인덱스는 이후 추가했습니다(`models.py` 에 9개). 위 측정표가 그 전후 비교입니다. **중복 적재 후보 검사는 인덱스로 풀리지 않습니다** — 지금은 최근 2일 적재분에서 후보를 뽑는 2단계 질의를 씁니다. 빨라진 대신 그 창 밖에서 원본과 복제본이 모두 적재된 중복은 놓칩니다. [측정과 한계](load-and-design-limits.md) 참고
+- 인덱스는 이후 추가했다(`models.py`에 9개). 위 측정표는 그 전후 비교의 기존 기록이다. 중복 적재 후보 검사는 인덱스만으로 풀리지 않아 최근 2일 적재분에서 후보를 뽑는 2단계 질의를 쓴다. 기존 기록에서는 질의를 바꿔 빨라진 대신 그 창 밖에서 원본과 복제본이 모두 적재된 중복은 놓친다. 기존 참조는 측정과 한계(`load-and-design-limits.md`)다.
 - `normalized_evidence`·`observed_rows`에 파티셔닝이 없습니다. 리소스별 최신 상태 질의는 조회 범위를 좁혔지만 근본 해법은 시간 파티셔닝입니다
 - 임계값(성공률 0.8, 잘림 비율 0.5, 재귀 깊이 10, 간선 신선도 7일)이 질의에 상수로 박혀 있습니다. 자산별로 다르게 두려면 설정 테이블이 필요합니다
 - 스키마 드리프트 검사는 `:run_id` 범위 안에서만 봅니다. 여러 실행에 걸친 추세는 별도 집계가 필요합니다
@@ -648,4 +648,4 @@ make catalog-sql
 
 ---
 
-[다음: 카탈로그 API와 MCP →](catalog-api-mcp.md)
+[다음: 카탈로그 조회 API →](catalog-api.md)

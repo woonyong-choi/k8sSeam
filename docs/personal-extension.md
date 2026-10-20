@@ -18,12 +18,12 @@
 
 ## 커밋 범위
 
-`git log --reverse --format='%h %ad %s' --date=short` 기준 전체 25개 커밋 중
-**팀 기준선 5개, 과제 종료 후 개인 작업 20개**입니다.
+아래 집계는 현재 `HEAD`가 아니라 당시 종료 커밋 [`9780fe9`](https://github.com/woonyong-choi/k8sSeam/commit/9780fe937c675e50e9c180b057f8988456ffebce)에 고정한다. 그 시점의 전체 25개 커밋은 팀 기준선 5개와 과제 종료 후 개인 작업 20개로 나뉜다.
 
 ```bash
-git rev-list --count HEAD            # 25
-git rev-list --count e1a9c79..HEAD   # 20
+git rev-list --count e1a9c795cffd2658268e66a7f2be2835bde76f18 # 5
+git rev-list --count 9780fe937c675e50e9c180b057f8988456ffebce # 25
+git rev-list --count e1a9c795cffd2658268e66a7f2be2835bde76f18..9780fe937c675e50e9c180b057f8988456ffebce # 20
 ```
 
 팀 기준선은 [`b749f3b`](https://github.com/woonyong-choi/k8s-clue/commit/b749f3b)(2026-08-04, 첫 커밋)부터

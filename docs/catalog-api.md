@@ -55,7 +55,7 @@ GET  /v1/catalog/runs                        실행 이력 + 소스별 지표
 
 **`reason_codes`가 구조체입니다.** 처음에는 `"SOURCE_FAILED:loki"` 같은 문자열이었습니다. 소비자가 전부 `split(":")`을 쓰게 되고, 그 문자열은 LLM이 읽는 제어 필드이기도 합니다. 코드와 대상을 분리했습니다. 코드 목록은 [`contracts/catalog/reason_codes.py`](../src/packages/contracts/catalog/reason_codes.py)에 닫힌 열거로 둡니다.
 
-**`page.next_cursor`가 있습니다.** 상한만 두고 페이지네이션이 없으면 상한 너머 데이터에 영원히 접근할 수 없습니다. [수집 한도 설계](collection-limits.md)에서 잘림을 숨기지 않기로 했는데, **숨기지 않는 것과 도달할 수 있게 하는 것은 다릅니다.**
+`page.next_cursor`가 있어 상한 너머 데이터에도 접근할 수 있다. 수집 한도 설계(`collection-limits.md`)는 잘림을 숨기지 않는다는 원칙의 참조다. 해당 공개 원문을 이 저장소에서 확인할 수 없다. 잘림을 알리는 것과 다음 페이지에 도달할 수 있게 하는 것은 다르다.
 
 ### 상태 코드
 
@@ -107,4 +107,4 @@ DB가 필요한 시험은 `CATALOG_DATABASE_URL` 또는 기본 로컬 접속 주
 
 - **읽기 전용 MCP 서버.** `k8s-ops-min` 에 시제품이 있었으나 실제 STS·MCP 클라이언트 연동을 검증하지 못해 이 저장소로 옮기지 않았다. 토큰 교환·감사·응답 절단 경계를 실제 클라이언트로 확인한 뒤 다시 가져온다.
 - 토큰 기반 세밀 인가는 기본 앱에 없다. Bearer 형식과 빈 값만 검사하며, 서명·만료·scope 검증은 호스트의 `verify_token` 주입 책임이다.
-- **관측 데이터 보존 정책.** 조회 API 가 Secret 값을 반환하지 않아도 snapshot·S3 원본에는 값이 남는다.
+- 관측 데이터 보존 정책은 미구현이다. 조회 API가 Secret 값을 반환하지 않아도 snapshot·로컬 보관 원본에는 값이 남을 수 있다.
