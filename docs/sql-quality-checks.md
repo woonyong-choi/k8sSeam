@@ -608,7 +608,7 @@ ORDER BY u.origin, u.ancestor, u.depth, c.finished_at DESC NULLS LAST, u.run_id 
 make catalog-sql
 ```
 
-검사 8종은 결과를 `quality_results`에 적재합니다. **위반 0건이어도 통과 결과를 남깁니다.** 검사하지 않은 것과 검사해서 통과한 것을 구분하기 위해서입니다. [수집 완전성 계약](collection-contract.md)의 원칙과 같습니다.
+`make catalog-sql`은 검사 8종과 조회 질의를 실행해 결과를 터미널에 출력한다. 이 명령은 `quality_results`에 결과를 적재하지 않는다. 적재는 [catalog_run.py](../scripts/catalog_run.py)의 배치가 [checks.run_checks](../src/domains/datacatalog/checks.py)를 호출하는 경로에서 수행한다. 배치는 위반 0건이어도 통과 결과를 남겨 검사하지 않은 것과 검사해서 통과한 것을 구분한다. [수집 완전성 계약](collection-contract.md)의 원칙과 같다.
 
 ## 검증
 

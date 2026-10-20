@@ -93,7 +93,7 @@ flowchart TD
 
 ### 무엇을 시험했나
 
-계약 자체는 [`domains/inventory/coverage.py`](../src/domains/inventory/coverage.py)에 있다. 이전 `k8s-ops-min`의 `tests/test_inventory_coverage.py`는 이 저장소에 없는 `domains.inventory.kubernetes_snapshot`에 의존하므로 함께 옮기지 않았다. 이 계층의 회귀 테스트는 아직 비어 있다.
+계약 자체는 [`domains/inventory/coverage.py`](../src/domains/inventory/coverage.py)에 있다. 이전 `k8s-ops-min`의 `tests/test_inventory_coverage.py`는 이 저장소에 없는 `domains.inventory.kubernetes_snapshot`에 의존하므로 함께 옮기지 않았다. 현재 저장소에는 [삭제 범위 속성 시험](../tests/test_inventory_delete_scope_properties.py), [Pod 수집 증명 시험](../tests/test_incident_history_provider.py), [수신 어댑터 시험](../tests/test_incident_history.py)과 [수집·DB·이력 연결 시험](../tests/test_incident_history_collection.py)이 있다. 마지막 시험은 격리된 PostgreSQL과 Redis를 지정해야 실행한다. 현재 연결된 삭제 판단은 완전성이 증명된 Pod namespace로 제한한다.
 
 아래 표는 어떤 사고를 막을지에 따라 정한 이전 `k8s-ops-min`의 시험 기준이다. 현재 저장소의 시험 실적은 아니다.
 
